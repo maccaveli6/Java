@@ -1,3 +1,5 @@
+
+
 //Programming Assignment #3: Matrix addition using multithredding
 //break 2 NxM matrices into 8 equal (or almost equal) matrices
 //Then add them using multithredding 
@@ -21,6 +23,8 @@ public class MatrixThread {
 //	 _______
 //	|		|
 //	| A , B |
+//	|_______|
+//	|		|
 //	| C , D |
 //  |_______|
 //	private static int[][] matrix1; private static int[][] matrix2;
@@ -36,7 +40,7 @@ public class MatrixThread {
 
 		loadMatrix(); //time complexity: O(n) space complexity: O(n) where n = N * M
 		matrix3 = new int [rows][cols];
-		long startTime = System.currentTimeMillis();
+//		long startTime = System.currentTimeMillis();
 		ThreadOperation MatrixA = new ThreadOperation(matrix1A, matrix2A, 0, 0); 
 		ThreadOperation MatrixB = new ThreadOperation(matrix1B, matrix2B, 0, start_col); 
 		ThreadOperation MatrixC = new ThreadOperation(matrix1C, matrix2C, start_row, 0); 
