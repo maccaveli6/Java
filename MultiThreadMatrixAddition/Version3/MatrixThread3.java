@@ -17,13 +17,12 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit; 
 
 public class MatrixThread3 {
-//	Matrix layout
-//	 _______
-//	|		|
-//	| A , B |
-//	| C , D |
-//  |_______|
-//	private static int[][] matrix1; private static int[][] matrix2;
+	//	Matrix layout
+	//	 _______
+	//	|		|
+	//	| A , B |
+	//	| C , D |
+	//  |_______|
 	private static int[][] matrix1A; private static int [][] matrix2A; private static int[][] matrix1B; private static int [][] matrix2B;
 	private static int[][] matrix1C; private static int [][] matrix2C; private static int[][] matrix1D; private static int [][] matrix2D;
 	private static int[][] matrix3; private static int rows; private static int cols; private static int start_row; private static int start_col;
@@ -36,7 +35,6 @@ public class MatrixThread3 {
 
 		loadMatrix(); //time complexity: O(n) space complexity: O(n) where n = N * M
 		matrix3 = new int [rows][cols];
-//		long startTime = System.currentTimeMillis();
 		ThreadOperation MatrixA = new ThreadOperation(matrix1A, matrix2A, 0, 0); 
 		ThreadOperation MatrixB = new ThreadOperation(matrix1B, matrix2B, 0, start_col); 
 		ThreadOperation MatrixC = new ThreadOperation(matrix1C, matrix2C, start_row, 0); 
@@ -48,20 +46,6 @@ public class MatrixThread3 {
 		executorService.execute(MatrixD); // time complexity: O(n/4) space complexity : O(n/4)
 		executorService.shutdown();
 		verifyThreadComplete(executorService, MatrixA, MatrixB, MatrixC, MatrixD); //time complexity: O(n) space complexity: O(n) where n = N * M
-
-//		long endTime   = System.currentTimeMillis();
-
-//		long totalTime = endTime - startTime;
-//		System.out.printf("\nTotal Runtime Multi Thread %d\n", totalTime);
-		
-//		loadSingleMatrix(); //time complexity: O(n) space complexity: O(n) where n = N * M
-//		startTime = System.currentTimeMillis();
-//		addMatrices(matrix1, matrix2); //time complexity: O(2n) space complexity: O(2n) which generalize to O(n)
-//		endTime   = System.currentTimeMillis();
-
-//		totalTime = endTime - startTime;
-//		System.out.printf("\nTotal Runtime Single Thread %d\n", totalTime);
-		
 		in.close();
 	}
 	private static void getInput (String filename) {
@@ -80,6 +64,8 @@ public class MatrixThread3 {
 		String[] line = input.get(0).split(" ");
 		rows = stringToInteger(line[0]);
 		cols = stringToInteger(line[1]);
+		//load both matrices.  this is where matrices will be split for multi-thredding
+		// requires O(n) (where n = N * M) at best
 		//for even number of rows and columns
 		if (rows % 2 == 0 && cols % 2 == 0) {
 			evenRowsEvenCols(line, rows, cols);
@@ -96,7 +82,6 @@ public class MatrixThread3 {
 		else if ((rows % 2 == 1 && cols % 2 == 1)) {
 			oddRowsOddCols(line, rows, cols);
 		}
-	//		System.out.printf("number of rows %d \nnumber of columns %d\n", rows, cols);
 	}
 	private static void evenRowsEvenCols(String[] line, int rows, int cols) {
 		start_row = rows/2; start_col = cols/2;
@@ -104,8 +89,6 @@ public class MatrixThread3 {
 		matrix1B = new int[rows/2][cols/2]; matrix2B = new int[rows/2][cols/2];
 		matrix1C = new int[rows/2][cols/2]; matrix2C = new int[rows/2][cols/2];
 		matrix1D = new int[rows/2][cols/2]; matrix2D = new int[rows/2][cols/2];
-		//load both matrices.  this is likely where matrices will be split for multi-thredding
-		// requires O(n) (where n = N * M) at best
 		for (int i = 0; i < rows/2; i++) {
 			line = input.get(i+1).split(" ");
 			String [] line2 = input.get(i+1+rows).split(" ");
@@ -213,7 +196,6 @@ public class MatrixThread3 {
 			}
 		}
 	}
-	
 	private static int stringToInteger (String numeric_string) {
 		try {
 			int int_output = Integer.parseInt(numeric_string);
@@ -224,29 +206,12 @@ public class MatrixThread3 {
 			return 0;
 		}
 	}
-	/*private static void addMatrices(int[][]matrix1, int [][] matrix2) {
-			int[][] matrix4 = new int[rows][cols];
-			for(int i = 0; i < rows; i++) {
-				for(int j = 0; j < cols; j++) {
-					matrix4[i][j] = matrix1[i][j] + matrix2[i][j]; 
-				}
-			}
-			System.out.printf("\n\n");
-			for(int i = 0; i < rows; i++) {
-				System.out.printf("\n");
-				for(int j = 0; j < cols; j++) {
-					System.out.printf("%3d", matrix4[i][j]); 
-			}
-		}
-	}*/
 	public static void setMatrix(int[][] value, int row_idx, int col_idx) {
 		for(int i = 0; i < value.length; i++) {
 			for(int j = 0; j < value[0].length; j++) {
 				matrix3[row_idx+i][col_idx+j] = value[i][j];
 			}
 		}
-//		System.out.println("calling print matrix Overloaded");
-//		printMatrix(matrix3);
 	}
 	private static void printMatrix() {
 		for(int i = 0; i < rows; i++) {
@@ -256,15 +221,6 @@ public class MatrixThread3 {
 			}
 		}
 	}
-	public static void printMatrix(int[][] matrix) { //Overloaded method for checking intermediate array states
-		for(int i = 0; i < matrix.length; i++) {
-			System.out.printf("\n");
-			for(int j = 0; j < matrix[0].length; j++) {
-				 System.out.printf("%3d", matrix[i][j]);
-			}
-		}
-		System.out.printf("\n");
-	}
 	private static void verifyThreadComplete(ExecutorService executorService, ThreadOperation MatrixA, ThreadOperation MatrixB, ThreadOperation MatrixC, ThreadOperation MatrixD) {
 		try {
 			boolean tasksEnded = executorService.awaitTermination(100, TimeUnit.MILLISECONDS);
@@ -273,7 +229,6 @@ public class MatrixThread3 {
 				setMatrix(MatrixB.getResult(), MatrixB.getFirstRow(), MatrixB.getFirstCol());
 				setMatrix(MatrixC.getResult(), MatrixC.getFirstRow(), MatrixC.getFirstCol());
 				setMatrix(MatrixD.getResult(), MatrixD.getFirstRow(), MatrixD.getFirstCol());
-				System.out.println("calling print matrix no args");
 				printMatrix();
 			}
 			else {
@@ -282,19 +237,6 @@ public class MatrixThread3 {
 		}
 		catch(Exception e) {
 			e.printStackTrace();
-			}
 		}
-	/*private static void loadSingleMatrix() {
-		matrix1 = new int[rows][cols]; matrix2 = new int[rows][cols];
-		for (int i = 0; i < rows; i++) {
-			String[] line = input.get(i+1).split(" ");
-			String [] line2 = input.get(i+1+rows).split(" ");
-			for(int j =0; j < line.length; j++) {
-				matrix1[i][j] =  stringToInteger(line[j]);
-				matrix2[i][j] =  stringToInteger(line2[j]);
-				}
-			}			
-	//		printMatrix(matrix1);
-	//		printMatrix(matrix2);
-	}*/
+	}
 }

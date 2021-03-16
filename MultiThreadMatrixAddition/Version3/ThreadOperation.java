@@ -19,7 +19,6 @@ public class ThreadOperation implements Runnable{
 					 output[i][j] = matrix1[i][j] + matrix2[i][j]; 
 					 }
 			}
-//		MatrixThread3.setMatrix(output, start_row, start_col);
 		}
 		catch (Exception e){
 			e.printStackTrace();
