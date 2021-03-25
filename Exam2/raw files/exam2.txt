@@ -1,0 +1,40 @@
+
+2251 Test 2
+
+The test opens on Tuesday 3/23. The test questions will be explained at the start of class. The test is due one week later before the start of class on Tuesday 3/30.
+
+============================================
+
+Question 1. In the board game Scrabble, each tile contains a letter, which is used to spell words in rows and columns, and a score, which is used to determine the value of words.
+
+Part A. Write a class named Tile that represents Scrabble tiles. Include two private instance variables, a character named letter and an integer named value.
+Part B. Write a constructor for Tile that takes parameters named letter and value and initializes the instance variables.
+Part C. Write two public getter methods in Tile that return the values of the instance variables.
+Part D. Create a driver class named Main.java with a public static void main method. Write another static method in Main named printTile that takes a Tile object as a parameter and displays the instance variables in a reader-friendly format.
+Part E. Write a static method in Main named testTile that instantiates a Tile object with the letter 'Z' and the value 10, and then uses printTile to display the state of the object.
+Part F. What is printed when the variable that refers to your tile object is printed directly? (Answer this in a comment at the top of Main. "Directly" means without quotation marks or use of toString. If t is the variable name of the tile, what does System.out.println(t); print?)
+Part G. Override the default toString method for Tile with a custom toString method that returns the same text as printTile prints. Then modify printTile to make use of toString.
+Part H. Create two instances of Tile (name the variables t1 and t2) that both have the letter Z and the value of 10. Is it true that t1.equals(t2)? (Answer this in a comment at the top of Main.)
+Part I. Override the default equals method for Tile with a custom method that returns true if the tiles being compared have the same letter and number. (You are encouraged to research the default equals method as much as you like.) Are tiles t1 and t2 equal now? (Answer this in a comment at the top of Main.)
+
+============================================
+
+Question 2. Modify the given "bad bank" code to answer the following questions.
+
+Part A. Implement new code that times the current program from before the start of the two threads to the end of the try-catch surrounding join. Report the time it took for three different runs and the average in a comment at the top of the program.
+
+Part B. Modify the timed code to have fine-grained synchronization by adding two generic objects, one to lock the modification of this.every_last_penny in the BankAccount.deposit method and the other to lock modification of this.every_last_penny in the BankAccount.withdraw method. Use the example in Monitors_and_Locks.docx to help guide you in performing this modification.
+
+Afterward, your code should now display the correct amount in the account when run. In other words, bad bank should now be a good bank.
+
+Part C. Run the code three more times and record the time it takes and the average. How much longer on average does correctness cost the program? (You shouldn't need to change the code at all for step 3 here.) Answer this question in a comment at the top of the program.
+
+============================================
+
+Question 3. Modify the given Client-Server example so that the server can receive different types of data and responds differently based on the type of data received. The server should terminate the connection if a null object is received.
+
+There are two TODO's to fill in in Server.java. No other files need to be changed.
+
+============================================
+
+Upload a zip file containing 3 separate folders (one for each question).
