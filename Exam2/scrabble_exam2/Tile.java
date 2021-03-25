@@ -19,7 +19,7 @@ public class Tile {
 
 	@Override
 	public String toString() {
-		return this.letter + " " + this.value;
+		return "Letter " + this.letter + " Value " + this.value;
 	}
 
 	@Override

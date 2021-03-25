@@ -11,13 +11,15 @@ public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// testTilePartD(); // testTile method from partD
+		System.out.println("testTile PartD:");
+		testTilePartD(); // testTile method from partD
 		// tileCompare(); // verify default/updated .equals() method
+		System.out.println("testTile Final:");
 		testTile(); // testTile method from partG
 	}
 
 	private static void printTilePartD(Tile tile) {
-		System.out.println(tile.getLetter() + " " + tile.getValue());
+		System.out.println("Letter " + tile.getLetter() + " Value " + tile.getValue());
 	}
 
 	private static void printTile(Tile tile) {
