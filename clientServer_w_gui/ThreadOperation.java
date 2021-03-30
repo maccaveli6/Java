@@ -1,3 +1,5 @@
+// Philip Garcia CS2251 Spring2021
+
 public class ThreadOperation implements Runnable {
 	private int rows;
 	private int cols;

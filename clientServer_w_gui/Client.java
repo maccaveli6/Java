@@ -1,3 +1,4 @@
+// Philip Garcia CS2251 Spring2021
 
 //package clientServerJFrames;
 import java.util.List;
@@ -79,6 +80,18 @@ public class Client extends JFrame {
 
 		setSize(800, 350);
 		setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		Client application;
+
+		if (args.length == 0) {
+			application = new Client("127.0.0.1");
+		} else {
+			application = new Client(args[0]);
+		}
+		application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		application.runClient();
 	}
 
 	public void runClient() {
