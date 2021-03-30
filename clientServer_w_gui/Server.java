@@ -14,6 +14,9 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
+import java.awt.Font;
+import java.awt.Color;
+
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -68,6 +71,17 @@ public class Server extends JFrame {
 
 		displayArea = new JTextArea(); // create displayArea
 		add(new JScrollPane(displayArea), BorderLayout.CENTER);
+		
+		// Create a button to terminate connection with server and close window
+		JButton terminate = new JButton("CLICK TO TERMINATE CONNECTION");
+		terminate.setFont(new Font("Serif", Font.PLAIN, 20));
+		terminate.setBackground(Color.red);
+		terminate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				sendData("TERMINATE");
+			}
+		});
+		add(terminate, BorderLayout.SOUTH);
 
 		setSize(800, 350);
 		setVisible(true);
