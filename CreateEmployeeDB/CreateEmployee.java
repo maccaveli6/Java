@@ -56,7 +56,7 @@ public class CreateEmployee {
 		printTable("basePlusCommissionEmployees");
 		printTable("salariedEmployees");
 		printTable("employees");
-
+		in.close();
 	}
 
 	private static void addEmployee() {
