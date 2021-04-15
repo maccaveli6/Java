@@ -74,7 +74,6 @@ public class CreateEmployee {
 			SocialSecurityNumber = validateSSN(SocialSecurityNumber);
 			// add employee to database
 			addEmployeeToDB(SocialSecurityNumber, firstName, lastName, DOB, employeeType, departmentname);
-			// System.out.println(SocialSecurityNumber + " " + DOB);
 			// add new employee to "employee type" database // hourly salary commission
 			// based ...
 			addEmployeeType(SocialSecurityNumber, employeeType);
@@ -252,7 +251,6 @@ public class CreateEmployee {
 			SocialSecurityNumber = in.nextLine();
 			SocialSecurityNumber = validateSSN(SocialSecurityNumber);
 		}
-		System.out.println(SocialSecurityNumber + " : " + matcher.matches());
 		return SocialSecurityNumber;
 	}
 
