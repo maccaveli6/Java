@@ -74,7 +74,7 @@ public class CreateEmployee {
 			SocialSecurityNumber = validateSSN(SocialSecurityNumber);
 			// add employee to database
 			addEmployeeToDB(SocialSecurityNumber, firstName, lastName, DOB, employeeType, departmentname);
-			System.out.println(SocialSecurityNumber + " " + DOB);
+			// System.out.println(SocialSecurityNumber + " " + DOB);
 			// add new employee to "employee type" database // hourly salary commission
 			// based ...
 			addEmployeeType(SocialSecurityNumber, employeeType);
@@ -202,7 +202,7 @@ public class CreateEmployee {
 			// process query results
 			ResultSetMetaData metaData = rowSet.getMetaData();
 			int numberOfColumns = metaData.getColumnCount();
-			System.out.printf(table + "Table of Employee Database:%n%n");
+			System.out.printf(table + " table of Employee Database:%n%n");
 
 			// display rowset header
 			for (int i = 1; i <= numberOfColumns; i++) {
